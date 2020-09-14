@@ -15,7 +15,7 @@ import android.provider.MediaStore;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ChoosePic extends AppCompatActivity {
+public class ChoosePicActivity extends AppCompatActivity {
     private static final int SELECT_IMAGE = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
