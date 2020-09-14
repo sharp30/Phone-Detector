@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         Button button1 = findViewById(R.id.open_camera);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ChoosePic.class);
+                Intent intent = new Intent(getApplicationContext(), ChoosePicActivity.class);
                 startActivity(intent);
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Camera.class);
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivity(intent);
             }
         });
