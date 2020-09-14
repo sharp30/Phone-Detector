@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Camera">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="402dp"
+        android:layout_height="534dp"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="6dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="354dp"
+        android:layout_height="84dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Take A Pic"
+        android:textAllCaps="false"
+        android:textIsSelectable="false"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="571dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
