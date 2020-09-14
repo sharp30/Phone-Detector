@@ -22,6 +22,8 @@ public class CameraActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
+    private Button againBtn;
+    private Button continueBtn;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     @Override
@@ -30,26 +32,43 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         this.imageView = (ImageView) this.findViewById(R.id.imageView);
-        Button photoButton = (Button) this.findViewById(R.id.button1);
-        photoButton.setOnClickListener(new View.OnClickListener()
-        {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+        this.continueBtn = (Button)this.findViewById(R.id.btn_continue);
+        this.againBtn = (Button)this.findViewById(R.id.btn_again);
+        //hide buttons
+        continueBtn.setVisibility(View.GONE);
+        againBtn.setVisibility(View.GONE);
+
+        continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
-                }
-                else
-                {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                }
+                //send to calculation
             }
-        });
-    }
+            });
 
+          againBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                getImage();
+            }
+            });
+
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
+        }
+        getImage();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void getImage()
+    {
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            continueBtn.setVisibility(View.VISIBLE);
+            againBtn.setVisibility(View.VISIBLE);
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
