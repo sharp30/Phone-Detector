@@ -16,39 +16,11 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="319dp"
-            android:layout_height="390dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.152"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:contentDescription="TODO" />
-
-        <Button
-            android:id="@+id/btn_continue"
-            android:layout_width="111dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginBottom="20dp"
-            android:text="Continue!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.853"
-            app:layout_constraintStart_toEndOf="@+id/btn_again"
-            android:layout_marginRight="44dp" />
-
-        <Button
-            android:id="@+id/btn_again"
-            android:layout_width="111dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginBottom="20dp"
-            android:text="Take Again!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="36dp" />
+            android:id="@+id/img"
+            android:layout_width="355dp"
+            android:layout_height="636dp"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="33dp"
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
