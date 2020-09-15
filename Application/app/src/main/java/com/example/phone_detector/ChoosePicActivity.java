@@ -18,10 +18,12 @@ import java.io.OutputStream;
 import net.sourceforge.tess4j.Tesseract;
 
 
-public class ChoosePicActivity extends AppCompatActivity {
+public class ChoosePicActivity extends AppCompatActivity
+{
     private static final int SELECT_IMAGE = 1;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_pic);
 
@@ -35,11 +37,12 @@ public class ChoosePicActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SELECT_IMAGE) {
-            if(resultCode == RESULT_OK) {
+        if (requestCode == SELECT_IMAGE)
+        {
+            if(resultCode == RESULT_OK)
+            {
                 Uri imageUri = data.getData();
-                Bitmap bmp = null;
-                bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                Bitmap bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                 ImageView imageView = findViewById(R.id.img);
                 imageView.setImageBitmap(bmp);
 

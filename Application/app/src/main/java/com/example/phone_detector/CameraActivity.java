@@ -19,12 +19,14 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity
+{
     private ImageView imageView;
     private static final int CAMERA_REQ = 1001;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         imageView = findViewById(R.id.img);
