@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.phone_detector;
 
 import org.junit.Test;
 

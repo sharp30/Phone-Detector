@@ -24,7 +24,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.152"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="TODO" />
 
         <Button
             android:id="@+id/btn_continue"
@@ -36,7 +37,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.853"
-            app:layout_constraintStart_toEndOf="@+id/btn_again" />
+            app:layout_constraintStart_toEndOf="@+id/btn_again"
+            android:layout_marginRight="44dp" />
 
         <Button
             android:id="@+id/btn_again"
@@ -46,6 +48,7 @@
             android:layout_marginBottom="20dp"
             android:text="Take Again!"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="36dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

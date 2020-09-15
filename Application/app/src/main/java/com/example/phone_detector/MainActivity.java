@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.phone_detector;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
