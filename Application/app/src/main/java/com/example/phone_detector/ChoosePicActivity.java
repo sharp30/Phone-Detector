@@ -1,24 +1,29 @@
 package com.example.phone_detector;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
-public class ChoosePicActivity extends AppCompatActivity {
+import net.sourceforge.tess4j.Tesseract;
+
+
+public class ChoosePicActivity extends AppCompatActivity
+{
     private static final int SELECT_IMAGE = 1;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_pic);
 
@@ -29,34 +34,24 @@ public class ChoosePicActivity extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SELECT_IMAGE) {
-            if(resultCode == RESULT_OK) {
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        if (requestCode == SELECT_IMAGE)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Uri imageUri = data.getData();
+                Bitmap bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                ImageView imageView = findViewById(R.id.img);
+                imageView.setImageBitmap(bmp);
 
-                assert selectedImage != null;
-                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                assert cursor != null;
-                cursor.moveToFirst();
+                Tesseract tesseract = new Tesseract();
+                tesseract.setDatapath("C:/Users/Administrator/Downloads/Tess4J/tessdata");
 
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String filePath = cursor.getString(columnIndex);
-                cursor.close();
+                // this line is wrong
+                String text = tesseract.doOCR(new File("C:\\Users\\Administrator\\Downloads\\flyer.png"));
 
-
-                Bitmap bmp = BitmapFactory.decodeFile(filePath);
-                try (FileOutputStream out = new FileOutputStream("bmp.png"))
-                {
-                    bmp.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                /* Now you have choosen image in Bitmap format in object "bmp". You can use it in way you want! */
             }
         }
 
