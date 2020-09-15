@@ -36,7 +36,7 @@ public class ChoosePicActivity extends AppCompatActivity {
         if (requestCode == SELECT_IMAGE) {
             if(resultCode == RESULT_OK) {
                 Uri imageUri = data.getData();
-                Bitmap bmp;
+                Bitmap bmp = null;
                 try {
                     bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                 } catch (IOException e) {
@@ -44,8 +44,6 @@ public class ChoosePicActivity extends AppCompatActivity {
                 }
                 ImageView imageView = findViewById(R.id.img);
                 imageView.setImageBitmap(bmp);
-
-                /* Now you have choosen image in Bitmap format in object "bmp". You can use it in way you want! */
             }
         }
 
