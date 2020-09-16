@@ -6,16 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-
-import net.sourceforge.tess4j.Tesseract;
 
 
 public class ChoosePicActivity extends AppCompatActivity
@@ -42,15 +36,15 @@ public class ChoosePicActivity extends AppCompatActivity
             if(resultCode == RESULT_OK)
             {
                 Uri imageUri = data.getData();
-                Bitmap bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                Bitmap bmp = null;
+                try {
+                    bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 ImageView imageView = findViewById(R.id.img);
                 imageView.setImageBitmap(bmp);
 
-                Tesseract tesseract = new Tesseract();
-                tesseract.setDatapath("C:/Users/Administrator/Downloads/Tess4J/tessdata");
-
-                // this line is wrong
-                String text = tesseract.doOCR(new File("C:\\Users\\Administrator\\Downloads\\flyer.png"));
 
             }
         }
