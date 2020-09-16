@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,10 +25,10 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result2);
         listView = findViewById(R.id.listview);
+        //numberArray = (ArrayList<PhoneNumber>)this.getIntent().getExtras().getParcelable(); TODO:fix here
         adapter = new NumberAdapter(getApplicationContext(),R.layout.phone_number,numberArray);
         listView.setAdapter(adapter);
-
-        // next thing you have to do is check if your adapter has changed
-        adapter.notifyDataSetChanged();
+        
     }
+
 }

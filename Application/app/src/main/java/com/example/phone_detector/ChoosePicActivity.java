@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 
 
 public class ChoosePicActivity extends AppCompatActivity
@@ -42,16 +43,25 @@ public class ChoosePicActivity extends AppCompatActivity
             if(resultCode == RESULT_OK)
             {
                 Uri imageUri = data.getData();
-                Bitmap bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                Bitmap bmp = null;
+                try {
+                    bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 ImageView imageView = findViewById(R.id.img);
                 imageView.setImageBitmap(bmp);
 
                 Tesseract tesseract = new Tesseract();
                 tesseract.setDatapath("C:/Users/Administrator/Downloads/Tess4J/tessdata");
 
-                // this line is wrong
-                String text = tesseract.doOCR(new File("C:\\Users\\Administrator\\Downloads\\flyer.png"));
-
+                /* this line is wrong
+                try {
+                    String text = tesseract.doOCR(new File("C:\\Users\\SharpComp\\Pictures\\avatar.png"));
+                } catch (TesseractException e) {
+                    e.printStackTrace();
+                }
+                */
             }
         }
 
