@@ -13,6 +13,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ImageDetect {
+    public static ArrayList<String> removeDuplicates(ArrayList<String> list)
+    {
+        ArrayList<String> newList = new ArrayList<>();
+        for (String element : list) {
+            if (!newList.contains(element)) {
+                newList.add(element);
+            }
+        }
+        return newList;
+    }
+
     static public ArrayList<String> imageToPhoneNumbers(Bitmap bmp, Context context)
     {
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
@@ -33,6 +44,7 @@ public class ImageDetect {
         while(m.find()) {
              result.add(m.group());
         }
+        result = removeDuplicates(result);
         return result;
     }
 }
