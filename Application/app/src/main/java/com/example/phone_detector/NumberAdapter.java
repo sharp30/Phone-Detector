@@ -66,7 +66,16 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://wa.me/972"+temp.getNumber().substring(1)));
+                String number = temp.getNumber();
+                if(temp.getNumber().charAt(0) == '0')
+                {
+                    number = "972" + number.substring(1);
+                }
+                else if(temp.getNumber().charAt(0) == '+')
+                {
+                    number = number.substring(1);
+                }
+                intent.setData(Uri.parse("https://wa.me/"+number));
                 context.startActivity(intent);
             }
         });

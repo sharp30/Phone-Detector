@@ -37,7 +37,7 @@ public class ImageDetect {
         }
         System.out.println(imageText.toString());
 
-        String pattern = "05?\\d(-?\\d){7}";
+        String pattern = "(\\+?\\d{2,4}|0)-?5?\\d(-?\\d){7}";
         Pattern r = Pattern.compile(pattern);
         ArrayList<String> result = new ArrayList<>();
         Matcher m = r.matcher(imageText.toString());
