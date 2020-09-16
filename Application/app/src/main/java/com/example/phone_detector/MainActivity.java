@@ -12,9 +12,11 @@ import android.graphics.Bitmap;
 import android.hardware.biometrics.BiometricManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.view.ActionMode;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -75,9 +77,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         ArrayList<String> numbers = ImageDetect.imageToPhoneNumbers(bmp, getApplicationContext());
+        ArrayList<PhoneNumber> arr = new ArrayList<PhoneNumber>();
+        int i = 0;
         for (String number : numbers)
         {
             System.out.println(number);
+            arr.add(new PhoneNumber(number,"Avram"+ Integer.toString(i)));
+            i++;
         }
+        Intent next = new Intent(this,ResultActivity.class);
+        next.putExtra("data",arr);
+        startActivity(next);
     }
 }
