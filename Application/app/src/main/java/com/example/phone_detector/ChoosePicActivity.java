@@ -55,13 +55,6 @@ public class ChoosePicActivity extends AppCompatActivity
                 Tesseract tesseract = new Tesseract();
                 tesseract.setDatapath("C:/Users/Administrator/Downloads/Tess4J/tessdata");
 
-                /* this line is wrong
-                try {
-                    String text = tesseract.doOCR(new File("C:\\Users\\SharpComp\\Pictures\\avatar.png"));
-                } catch (TesseractException e) {
-                    e.printStackTrace();
-                }
-                */
             }
         }
 
