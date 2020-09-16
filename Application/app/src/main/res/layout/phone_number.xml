@@ -67,4 +67,17 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="71dp" />
 
+    <TextView
+        android:id="@+id/tv_person"
+        android:layout_width="294dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/actor"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="71dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

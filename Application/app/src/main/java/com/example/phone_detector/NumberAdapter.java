@@ -39,6 +39,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
 
         TextView tvNumber = (TextView)view.findViewById(R.id.tv_number);
+        TextView tvPerson = (TextView)view.findViewById(R.id.tv_person);
         ImageButton btnCall = (ImageButton) view.findViewById(R.id.btn_call);
         ImageButton btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
         ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
@@ -46,6 +47,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
 
 
         tvNumber.setText(temp.getNumber());
+        tvPerson.setText(temp.getPersonName());
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

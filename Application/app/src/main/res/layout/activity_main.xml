@@ -54,7 +54,7 @@
         android:text="Choose Picture"
         android:textAllCaps="false"
         android:textColor="#FFFF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
