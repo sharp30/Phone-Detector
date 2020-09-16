@@ -1,6 +1,9 @@
 package com.example.phone_detector;
 
-public class PhoneNumber {
+import java.io.Serializable;
+
+public class PhoneNumber implements Serializable
+{
     protected String number;
     protected String personName;
 
