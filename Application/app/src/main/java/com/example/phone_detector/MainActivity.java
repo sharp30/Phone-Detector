@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         for (String number : numbers)
         {
             System.out.println(number);
-            arr.add(new PhoneNumber(number.replace("-",""),"Avram"+ Integer.toString(i)));
+            arr.add(new PhoneNumber(number.replace("-",""),""));
             i++;
         }
         Intent next = new Intent(this,ResultActivity.class);
