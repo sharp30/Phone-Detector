@@ -10,6 +10,13 @@ import android.provider.MediaStore;
 import android.widget.ImageView;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.io.OutputStream;
+
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+>>>>>>> d7cf6bb181a8c2db21a7bcda47a2a80bcaf1cce7
 
 
 public class ChoosePicActivity extends AppCompatActivity
@@ -45,7 +52,20 @@ public class ChoosePicActivity extends AppCompatActivity
                 ImageView imageView = findViewById(R.id.img);
                 imageView.setImageBitmap(bmp);
 
+<<<<<<< HEAD
 
+=======
+                Tesseract tesseract = new Tesseract();
+                tesseract.setDatapath("C:/Users/Administrator/Downloads/Tess4J/tessdata");
+
+                /* this line is wrong
+                try {
+                    String text = tesseract.doOCR(new File("C:\\Users\\SharpComp\\Pictures\\avatar.png"));
+                } catch (TesseractException e) {
+                    e.printStackTrace();
+                }
+                */
+>>>>>>> d7cf6bb181a8c2db21a7bcda47a2a80bcaf1cce7
             }
         }
 

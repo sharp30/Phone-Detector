@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ResultActivity"></activity>
         <activity android:name=".ChoosePicActivity" />
         <activity android:name=".CameraActivity" />
-
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="com.google.android.gms.vision.DEPENDENCIES"
