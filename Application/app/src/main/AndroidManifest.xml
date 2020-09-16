@@ -10,8 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ResultActivity" />
-        <activity android:name=".ChoosePicActivity" />
-        <activity android:name=".CameraActivity" />
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="com.google.android.gms.vision.DEPENDENCIES"
