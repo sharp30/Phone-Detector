@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -14,8 +15,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
+
+import static android.Manifest.permission.CALL_PHONE;
+import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class NumberAdapter extends ArrayAdapter<PhoneNumber>
 {
@@ -48,7 +53,12 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:"+temp.getNumber()));
+                if (ContextCompat.checkSelfPermission((Activity)context, CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+                {
+                        requestPermissions((Activity)context,new String[]{CALL_PHONE},1);
+                }
                 context.startActivity(intent);
+
             }
         });
 

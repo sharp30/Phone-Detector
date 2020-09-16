@@ -29,5 +29,6 @@
             android:value="true" />
 
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>
