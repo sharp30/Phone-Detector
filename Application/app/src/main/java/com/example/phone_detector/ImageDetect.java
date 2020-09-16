@@ -17,19 +17,19 @@ public class ImageDetect {
     {
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
         Frame frame = new Frame.Builder().setBitmap(bmp).build();
-        String imageText = "";
+        StringBuilder imageText = new StringBuilder();
         SparseArray<TextBlock> textBlocks = textRecognizer.detect(frame);
 
         for (int i = 0; i < textBlocks.size(); i++) {
             TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
-            imageText = textBlock.getValue();
+            imageText.append(textBlock.getValue());
         }
-        System.out.println(imageText);
+        System.out.println(imageText.toString());
 
         String pattern = "05?\\d(-?\\d){7}";
         Pattern r = Pattern.compile(pattern);
         ArrayList<String> result = new ArrayList<>();
-        Matcher m = r.matcher(imageText);
+        Matcher m = r.matcher(imageText.toString());
         while(m.find()) {
              result.add(m.group());
         }

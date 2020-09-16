@@ -16,19 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
-    private ListView listView;
-    private ArrayList<PhoneNumber> numberArray = new ArrayList<PhoneNumber>();
-    private NumberAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result2);
-        listView = findViewById(R.id.listview);
-        numberArray = (ArrayList<PhoneNumber>)this.getIntent().getSerializableExtra("data");
-        adapter = new NumberAdapter(this,R.layout.phone_number,numberArray);
+        ListView listView = findViewById(R.id.listview);
+        ArrayList<PhoneNumber> numberArray = (ArrayList<PhoneNumber>) this.getIntent().getSerializableExtra("data");
+        NumberAdapter adapter = new NumberAdapter(this, R.layout.phone_number, numberArray);
         listView.setAdapter(adapter);
-        
     }
-
 }

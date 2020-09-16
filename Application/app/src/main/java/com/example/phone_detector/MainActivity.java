@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     bmp = (Bitmap) data.getExtras().get("data");
                 }
         else if (requestCode == SELECT_IMAGE && resultCode == RESULT_OK)
+        {
+            Uri imageUri = data.getData();
+            try
             {
-                Uri imageUri = data.getData();
-                try
-                {
                 bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
             }
             catch (IOException e)
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         ArrayList<String> numbers = ImageDetect.imageToPhoneNumbers(bmp, getApplicationContext());
-        ArrayList<PhoneNumber> arr = new ArrayList<PhoneNumber>();
+        ArrayList<PhoneNumber> arr = new ArrayList<>();
         int i = 0;
         for (String number : numbers)
         {

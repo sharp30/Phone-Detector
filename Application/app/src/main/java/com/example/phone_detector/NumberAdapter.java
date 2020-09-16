@@ -1,5 +1,6 @@
 package com.example.phone_detector;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,14 +24,14 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
     public NumberAdapter(@NonNull Context context, int resource, @NonNull List<PhoneNumber> objects) {
         super(context, resource, objects);
 
-        this.context=context;
-        this.data =objects;
+        this.context = context;
+        this.data = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
+        @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
 
         TextView tvNumber = (TextView)view.findViewById(R.id.tv_number);
         TextView tvPerson = (TextView)view.findViewById(R.id.tv_person);
@@ -65,7 +66,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://wa.me/"+temp.getNumber()));
+                intent.setData(Uri.parse("https://wa.me/972"+temp.getNumber().substring(1)));
                 context.startActivity(intent);
             }
         });
