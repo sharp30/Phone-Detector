@@ -61,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bmp = null;
         if (requestCode == CAMERA_REQ && resultCode == RESULT_OK)
-        {
-            bmp = (Bitmap) data.getExtras().get("data");
-        }
+                {
+                    bmp = (Bitmap) data.getExtras().get("data");
+                }
         else if (requestCode == SELECT_IMAGE && resultCode == RESULT_OK)
-        {
-            Uri imageUri = data.getData();
-            try
             {
+                Uri imageUri = data.getData();
+                try
+                {
                 bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
             }
             catch (IOException e)
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         for (String number : numbers)
         {
             System.out.println(number);
-            arr.add(new PhoneNumber(number,"Avram"+ Integer.toString(i)));
+            arr.add(new PhoneNumber(number.replace("-",""),"Avram"+ Integer.toString(i)));
             i++;
         }
         Intent next = new Intent(this,ResultActivity.class);

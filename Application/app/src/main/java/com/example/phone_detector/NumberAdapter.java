@@ -10,13 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import java.net.URI;
 import java.util.List;
 
 public class NumberAdapter extends ArrayAdapter<PhoneNumber>
@@ -38,7 +35,8 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         TextView tvNumber = (TextView)view.findViewById(R.id.tv_number);
         TextView tvPerson = (TextView)view.findViewById(R.id.tv_person);
         ImageButton btnCall = (ImageButton) view.findViewById(R.id.btn_call);
-        ImageView btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
+        ImageButton btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
+        ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
         final PhoneNumber temp = data.get(position);
 
 
@@ -60,6 +58,14 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
                 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
                 intent.putExtra(ContactsContract.Intents.Insert.PHONE, temp.getNumber());
                 intent.putExtra(ContactsContract.Intents.Insert.NAME, temp.getPersonName());
+                context.startActivity(intent);
+            }
+        });
+        btnWhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://wa.me/"+temp.getNumber()));
                 context.startActivity(intent);
             }
         });
