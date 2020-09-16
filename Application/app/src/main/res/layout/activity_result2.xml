@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".ResultActivity" >
 
     <TextView
         android:id="@+id/tv_failMessage"
-        android:layout_width="378dp"
-        android:layout_height="41dp"
+        android:layout_width="352dp"
+        android:layout_height="264dp"
+        android:fontFamily="@font/actor"
+        android:gravity="center"
         android:text="@string/fail_message"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/listview"
+        android:textColor="#FFFF"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listview"
