@@ -12,4 +12,3 @@ and afterwards it will offer you some options like:
 link to google play:<br/>
 https://play.google.com/store/apps/details?id=com.phone_detector<br />
 <img align="center" src="https://github.com/sharp30/Phone-Detector/blob/develop/logo.jpeg" width="200" height="200"> <br />
-logo made by @nitayke
