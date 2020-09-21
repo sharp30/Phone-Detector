@@ -7,10 +7,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -39,15 +43,43 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
 
         TextView tvNumber = (TextView)view.findViewById(R.id.tv_number);
-        TextView tvPerson = (TextView)view.findViewById(R.id.tv_person);
+        final EditText etName = (EditText)view.findViewById(R.id.et_name);
         ImageButton btnCall = (ImageButton) view.findViewById(R.id.btn_call);
         ImageButton btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
         ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
+        final Button btnSave = (Button)view.findViewById(R.id.btn_save);
         final PhoneNumber temp = data.get(position);
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = etName.getText().toString();
+                temp.SetPersonName(name);
+                //send new name to firebase
+                //check if changes in Contact;
+                view.setVisibility(View.GONE);
+            }
+        });
+        btnSave.setVisibility(View.GONE);
 
-        tvNumber.setText(temp.getNumber());
-        tvPerson.setText(temp.getPersonName());
+        etName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+                btnSave.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +121,9 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
                 context.startActivity(intent);
             }
         });
+
+        tvNumber.setText(temp.getNumber());
+        etName.setText(temp.getPersonName());
         return view;
     }
 }
