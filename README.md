@@ -10,5 +10,5 @@ and afterwards it will offer you some options like:
   * send a Whatsapp message
   
 Can be found on Play Store Soon!<br />
-<img align="center" src="https://github.com/sharp30/Phone-Detector/blob/master/App-Logo.png" width="400" height="400"> <br />
+<img align="center" src="https://github.com/sharp30/Phone-Detector/blob/develop/logo.jpeg" width="200" height="200"> <br />
 logo made by @nitayke
