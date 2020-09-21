@@ -1,4 +1,4 @@
-package com.example.phone_detector;
+package com.phone_detector;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
