@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "517244606069",
+    "firebase_url": "https://phone-detector-9f179.firebaseio.com",
+    "project_id": "phone-detector-9f179",
+    "storage_bucket": "phone-detector-9f179.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517244606069:android:e1be57fd11a36887f8ca3c",
+        "android_client_info": {
+          "package_name": "com.phone_detector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517244606069-nhgd2intcjmc0h5rpnpk3hqkod2rb7e9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phone_detector",
+            "certificate_hash": "3ae0cde6b6530505eb854df7ba70acfbbdb70c3d"
+          }
+        },
+        {
+          "client_id": "517244606069-h12p9ot55lkn0ugfa6pb0uj7utfso210.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBagku7mGhTTgvOmCvXKBIWHcPyUYU7bz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517244606069-h12p9ot55lkn0ugfa6pb0uj7utfso210.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

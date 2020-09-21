@@ -2,6 +2,7 @@ package com.phone_detector;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Person;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.List;
 
 import static android.Manifest.permission.CALL_PHONE;
@@ -39,6 +46,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
         @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
 
@@ -49,13 +57,12 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
         final Button btnSave = (Button)view.findViewById(R.id.btn_save);
         final PhoneNumber temp = data.get(position);
-
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = etName.getText().toString();
                 temp.SetPersonName(name);
-                //send new name to firebase
+                setData(temp);
                 //check if changes in Contact;
                 view.setVisibility(View.GONE);
             }
@@ -126,4 +133,12 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         etName.setText(temp.getPersonName());
         return view;
     }
+    public void setData(PhoneNumber p)
+    {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child(p.number);
+        db.setValue(p);
+
+    }
+
+
 }

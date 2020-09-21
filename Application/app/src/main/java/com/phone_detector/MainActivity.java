@@ -1,5 +1,6 @@
 package com.phone_detector;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -19,6 +20,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bmp = null;
         if (requestCode == CAMERA_REQ && resultCode == RESULT_OK)
@@ -82,11 +90,33 @@ public class MainActivity extends AppCompatActivity {
         for (String number : numbers)
         {
             System.out.println(number);
-            arr.add(new PhoneNumber(number.replace("-",""),""));
+            arr.add(getData((number.replace("-",""))));
             i++;
         }
         Intent next = new Intent(this,ResultActivity.class);
         next.putExtra("data",arr);
         startActivity(next);
+    }
+
+    public PhoneNumber getData(final String number)
+    {
+        final PhoneNumber[] output = {new PhoneNumber(number, "")};
+        final String a ="";
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.hasChild(number))
+                    return;
+                output[0].SetPersonName(snapshot.child(number).child("personName").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return  output[0];
+
     }
 }
