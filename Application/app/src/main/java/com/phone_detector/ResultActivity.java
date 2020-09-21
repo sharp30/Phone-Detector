@@ -1,4 +1,4 @@
-package com.example.phone_detector;
+package com.phone_detector;
 
 import android.opengl.Visibility;
 import android.os.Bundle;
