@@ -133,11 +133,11 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         etName.setText(temp.getPersonName());
         return view;
     }
+
     public void setData(PhoneNumber p)
     {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child(p.number);
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child(p.getNumber());
         db.setValue(p);
-
     }
 
 
