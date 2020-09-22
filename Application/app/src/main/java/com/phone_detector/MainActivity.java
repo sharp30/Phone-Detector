@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
         int i = 0;
         for (String number : numbers) {
             System.out.println(number);
-            arr.add(getData(number.replace("-", "")));
+             number = number.replace("-", "");
+            arr.add(new PhoneNumber(number,FireBase.getName(number.replace("-", ""))));
             i++;
         }
         Intent next = new Intent(this, ResultActivity.class);

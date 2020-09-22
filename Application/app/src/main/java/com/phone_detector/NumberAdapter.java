@@ -62,7 +62,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             public void onClick(View view) {
                 String name = etName.getText().toString();
                 temp.SetPersonName(name);
-                setData(temp);
+                FireBase.setData(temp);
                 //check if changes in Contact;
                 view.setVisibility(View.GONE);
             }
