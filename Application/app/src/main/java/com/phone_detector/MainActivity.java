@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,31 +35,71 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.choose_pic);
-        Button button1 = findViewById(R.id.open_camera);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (Intent.ACTION_SEND.equals(action) && type != null && type.startsWith("image/")) {
+            try {
+                handleSharedImage(intent);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, CAMERA_REQ);
-            }
-        });
+        }
+        else
+        {
+            setContentView(R.layout.activity_main);
+
+            Button button = findViewById(R.id.choose_pic);
+            Button button1 = findViewById(R.id.open_camera);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
+                }
+            });
+            button1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CAMERA_REQ);
+                }
+            });
+        }
+    }
+
+    void handleSharedImage(Intent intent) throws IOException {
+        Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageUri != null) {
+            Bitmap bmp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            processBmp(bmp);
+        }
+        else
+        {
+            Log.d("", "Error!");
+        }
+    }
+
+    void processBmp(Bitmap bmp)
+    {
+        ArrayList<String> numbers = ImageDetect.imageToPhoneNumbers(bmp, getApplicationContext());
+        arr = new ArrayList<>();
+        int i = 0;
+        for (String number : numbers) {
+            System.out.println(number);
+            number = number.replace("-", "");
+            arr.add(new PhoneNumber(number,FireBase.getName(number.replace("-", ""))));
+            i++;
+        }
+        Intent next = new Intent(this, ResultActivity.class);
+        next.putExtra("data", arr);
+        startActivity(next);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bmp = null;
         if (requestCode == CAMERA_REQ && resultCode == RESULT_OK) {
@@ -71,18 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        ArrayList<String> numbers = ImageDetect.imageToPhoneNumbers(bmp, getApplicationContext());
-        arr = new ArrayList<>();
-        int i = 0;
-        for (String number : numbers) {
-            System.out.println(number);
-             number = number.replace("-", "");
-            arr.add(new PhoneNumber(number,FireBase.getName(number.replace("-", ""))));
-            i++;
-        }
-        Intent next = new Intent(this, ResultActivity.class);
-        next.putExtra("data", arr);
-        startActivity(next);
+        processBmp(bmp);
     }
 
     public PhoneNumber getData(final String number) {
