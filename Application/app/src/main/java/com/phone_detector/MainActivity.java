@@ -21,8 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
-import java.util.ArrayList;
+        import java.io.IOException;
+        import java.util.ArrayList;
 
 
 
@@ -72,13 +72,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         ArrayList<String> numbers = ImageDetect.imageToPhoneNumbers(bmp, getApplicationContext());
-        arr = new ArrayList<>();
+        arr = new ArrayList<PhoneNumber>();
         int i = 0;
+
         for (String number : numbers) {
             System.out.println(number);
-             number = number.replace("-", "");
-            arr.add(new PhoneNumber(number,FireBase.getName(number.replace("-", ""))));
+            number = number.replace("-", "");
+             String finalNumber = number;
+            //FireBase.getName(finalNumber.replace("-",""),this);
+            boolean add = arr.add(new PhoneNumber(finalNumber, ""));// FireBase.getName(finalNumber.replace("-", ""))));
             i++;
+        }
+        while(arr.size() != numbers.size())
+        {
+            break;
         }
         Intent next = new Intent(this, ResultActivity.class);
         next.putExtra("data", arr);
