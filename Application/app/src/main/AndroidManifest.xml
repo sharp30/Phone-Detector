@@ -25,6 +25,7 @@
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
+        <activity android:name=".ResultActivity"></activity>
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />

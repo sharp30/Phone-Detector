@@ -55,7 +55,7 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
         ImageButton btnCall = (ImageButton) view.findViewById(R.id.btn_call);
         ImageButton btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
         ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
-        final Button btnSave = (Button)view.findViewById(R.id.btn_save);
+        final ImageButton btnSave = (ImageButton)view.findViewById(R.id.btn_save);
         final PhoneNumber temp = data.get(position);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,9 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
             {
-                btnSave.setVisibility(View.VISIBLE);
+                if((charSequence.toString()).length() > 0)
+                    btnSave.setVisibility(View.VISIBLE);
+
             }
 
             @Override

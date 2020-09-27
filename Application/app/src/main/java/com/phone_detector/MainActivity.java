@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.IOException;
         import java.util.ArrayList;
 
+import javax.xml.transform.Result;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             });
             button1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, CAMERA_REQ);
                 }
@@ -93,13 +96,9 @@ public class MainActivity extends AppCompatActivity {
             number = number.replace("-", "");
              String finalNumber = number;
             //FireBase.getName(finalNumber.replace("-",""),this);
-            boolean add = arr.add(new PhoneNumber(finalNumber, ""));// FireBase.getName(finalNumber.replace("-", ""))));
+            arr.add(new PhoneNumber(finalNumber, ""));// FireBase.getName(finalNumber.replace("-", ""))));
 
             i++;
-        }
-        while(arr.size() != numbers.size())
-        {
-            break;
         }
         Intent next = new Intent(this, ResultActivity.class);
         next.putExtra("data", arr);

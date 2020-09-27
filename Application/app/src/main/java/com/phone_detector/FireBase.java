@@ -64,15 +64,18 @@ public class FireBase {
 
 
     public static void setData(final PhoneNumber n) {
+        if(n.getPersonName().length() ==0)
+            return;
+        
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final boolean[] cond = {false};
         //new Data
         db.collection("numbers").whereEqualTo("document_id", n.getNumber()).get() .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                cond[0] = task.getResult().size() == 1;
+
                 Map<String, Object> number = new HashMap<>();
-                if (cond[0]) {
+                if (task.isSuccessful()) {
                     number.put("homeState", n.getHomeState());
                     number.put("names", new HashMap<String, Integer>() {{
                         put(n.getPersonName(), 1);

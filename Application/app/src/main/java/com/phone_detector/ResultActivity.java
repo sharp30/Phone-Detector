@@ -20,7 +20,6 @@ import java.util.List;
 public class ResultActivity extends AppCompatActivity {
     private TextView tvFail;
     private NumberAdapter adapter;
-    private Thread thread;
     private ArrayList<PhoneNumber> numberArray;
     int size;
     @Override
@@ -35,24 +34,20 @@ public class ResultActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         tvFail = (TextView) findViewById(R.id.tv_failMessage);
-        tvFail.setVisibility(View.GONE);
+        if(size >0)
+            tvFail.setVisibility(View.GONE);
         for(PhoneNumber i : numberArray)
             FireBase.getName(i.getNumber(),this);
 
 
 
-        //thread.start();
 
     }
 
-    @Override
-    public void onDestroy() {
-        thread.interrupt();
-        super.onDestroy();
-    }
     public void updateNumber(String number, String name)
     {
-        for(int i =0;i<numberArray.size();i++) {
+        for(int i =0;i<numberArray.size();i++)
+        {
             if (numberArray.get(i).getNumber() == number) {
                 numberArray.get(i).SetPersonName(name);
                 this.adapter.notifyDataSetChanged();
