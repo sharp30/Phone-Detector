@@ -119,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        processBmp(bmp);
+        if(bmp != null)
+            processBmp(bmp);
     }
 
     public PhoneNumber getData(final String number) {
