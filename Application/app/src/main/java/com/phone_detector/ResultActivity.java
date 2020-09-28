@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,9 +26,14 @@ public class ResultActivity extends AppCompatActivity {
     int size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result2);
+        // Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // set content view AFTER ABOVE sequence (to avoid crash)
+        this.setContentView(R.layout.activity_result2);
+
         ListView listView = findViewById(R.id.listview);
         numberArray = (ArrayList<PhoneNumber>) this.getIntent().getSerializableExtra("data");
         size = numberArray.size();
