@@ -11,24 +11,32 @@ public class PhoneNumber implements Serializable {
     {
 
     }
+
     public PhoneNumber(String number, String personName)
     {
-        this.number = number;
+        setNumber(number);
         this.personName = personName;
         this.isHomeNumber = !number.startsWith("+") && (number.startsWith("07") || number.length() < 10);
     }
     public PhoneNumber(String number, String personName,boolean state)
     {
-        this.number = number;
+        setNumber(number);
         this.personName = personName;
-        this.isHomeNumber =state;
+        this.isHomeNumber = !number.startsWith("+") && (number.startsWith("07") || number.length() < 10);
     }
 
+    public void setNumber(String number)
+    {
+        if(number.startsWith("+972"))
+            number = "0" + number.substring(4);
+        this.number = number;
+    }
 
     public void SetPersonName(String personName)
     {
         this.personName = personName;
     }
+
 
     public String getNumber() {
         return number;
