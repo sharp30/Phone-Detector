@@ -47,15 +47,15 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
-        @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number,parent,false);
+        LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
+        @SuppressLint("ViewHolder") View view = layoutInflater.inflate(R.layout.phone_number, parent, false);
 
-        TextView tvNumber = (TextView)view.findViewById(R.id.tv_number);
-        final EditText etName = (EditText)view.findViewById(R.id.et_name);
+        TextView tvNumber = (TextView) view.findViewById(R.id.tv_number);
+        final EditText etName = (EditText) view.findViewById(R.id.et_name);
         ImageButton btnCall = (ImageButton) view.findViewById(R.id.btn_call);
-        ImageButton btnContact=(ImageButton)view.findViewById(R.id.btn_contact);
-        ImageButton btnWhatsapp = (ImageButton)view.findViewById(R.id.btn_whatsapp);
-        final ImageButton btnSave = (ImageButton)view.findViewById(R.id.btn_save);
+        ImageButton btnContact = (ImageButton) view.findViewById(R.id.btn_contact);
+        ImageButton btnWhatsapp = (ImageButton) view.findViewById(R.id.btn_whatsapp);
+        final ImageButton btnSave = (ImageButton) view.findViewById(R.id.btn_save);
         final PhoneNumber temp = data.get(position);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +76,8 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-                if((charSequence.toString()).length() > 0)
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if ((charSequence.toString()).length() > 0)
                     btnSave.setVisibility(View.VISIBLE);
 
             }
@@ -93,10 +92,9 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:"+temp.getNumber()));
-                if (ContextCompat.checkSelfPermission((Activity)context, CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
-                {
-                        requestPermissions((Activity)context,new String[]{CALL_PHONE},1);
+                intent.setData(Uri.parse("tel:" + temp.getNumber()));
+                if (ContextCompat.checkSelfPermission((Activity) context, CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions((Activity) context, new String[]{CALL_PHONE}, 1);
                 }
                 context.startActivity(intent);
 
@@ -113,6 +111,9 @@ public class NumberAdapter extends ArrayAdapter<PhoneNumber>
                 context.startActivity(intent);
             }
         });
+        ViewGroup layout = (ViewGroup) btnWhatsapp.getParent();
+        if (layout != null && temp.getHomeState())
+            layout.removeView(btnWhatsapp);
         btnWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
