@@ -35,8 +35,8 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class NumberAdapter extends ArrayAdapter<PhoneNumber>
 {
-        private  Context context;
-        private  List<PhoneNumber> data;
+    private  Context context;
+    private  List<PhoneNumber> data;
     public NumberAdapter(@NonNull Context context, int resource, @NonNull List<PhoneNumber> objects) {
         super(context, resource, objects);
 

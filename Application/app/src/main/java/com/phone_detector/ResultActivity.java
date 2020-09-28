@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
-    private TextView tvFail;
     private NumberAdapter adapter;
     private ArrayList<PhoneNumber> numberArray;
     int size;
@@ -30,8 +29,7 @@ public class ResultActivity extends AppCompatActivity {
         // Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // set content view AFTER ABOVE sequence (to avoid crash)
+        getSupportActionBar().hide(); //hide the title bar
         this.setContentView(R.layout.activity_result2);
 
         ListView listView = findViewById(R.id.listview);
@@ -40,22 +38,18 @@ public class ResultActivity extends AppCompatActivity {
         adapter = new NumberAdapter(this, R.layout.phone_number, numberArray);
         listView.setAdapter(adapter);
 
-        tvFail = (TextView) findViewById(R.id.tv_failMessage);
+        TextView tvFail = findViewById(R.id.tv_failMessage);
         if(size >0)
             tvFail.setVisibility(View.GONE);
         for(PhoneNumber i : numberArray)
             FireBase.getName(i.getNumber(),this);
-
-
-
-
     }
 
     public void updateNumber(String number, String name)
     {
-        for(int i =0;i<numberArray.size();i++)
+        for(int i =0; i < numberArray.size(); i++)
         {
-            if (numberArray.get(i).getNumber() == number) {
+            if (numberArray.get(i).getNumber().equals(number)) {
                 numberArray.get(i).SetPersonName(name);
                 this.adapter.notifyDataSetChanged();
                 return;
