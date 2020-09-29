@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         for (String number : numbers) {
             System.out.println(number);
             number = number.replace("-", "");
-             String finalNumber = number;
+            String finalNumber = number;
             //FireBase.getName(finalNumber.replace("-",""),this);
             arr.add(new PhoneNumber(finalNumber, ""));// FireBase.getName(finalNumber.replace("-", ""))));
 
