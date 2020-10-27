@@ -1,5 +1,5 @@
 # Phone-Detector
-Android application for detecting phone numbers and dealing with this.
+Android application for detecting phone numbers in an image and dealing with it.
 
 ## About
 The Application will allow you to shoot a photo or upload one from your gallery,<br />
