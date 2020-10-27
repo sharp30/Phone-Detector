@@ -33,7 +33,7 @@ public class ImageDetect {
 
         for (int i = 0; i < textBlocks.size(); i++) {
             TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
-            imageText.append(textBlock.getValue());
+            imageText.append(textBlock.getValue().replace(" ",""));
         }
         System.out.println(imageText.toString());
 
@@ -47,4 +47,7 @@ public class ImageDetect {
         result = removeDuplicates(result);
         return result;
     }
+
+
+
 }
